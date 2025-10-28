@@ -43,4 +43,9 @@ function NumbersHide()
   vim.opt.relativenumber = false
 end
 
+-- Terminal
+vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+vim.keymap.set({ 'n', 't' }, '<leader>tt', ':Floaterminal<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
+
+-- Otros plugins
 require 'julian.propio.floaterminal'
