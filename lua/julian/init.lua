@@ -42,3 +42,5 @@ function NumbersHide()
   vim.opt.number = false
   vim.opt.relativenumber = false
 end
+
+require 'julian.propio.floaterminal'
