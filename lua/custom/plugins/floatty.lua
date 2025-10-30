@@ -52,15 +52,11 @@ M.toggle_terminal = function()
   end
 end
 
-M.floatty_test = function()
-  print 'floatty test'
-end
-
 M.config = function()
-  vim.api.nvim_create_user_command('FloattyTest', M.toggle_terminal, {})
+  -- vim.api.nvim_create_user_command('FloattyToggle', M.toggle_terminal, {})
 
   vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
-  vim.keymap.set({ 'n', 't' }, '<leader>tt', ':FloattyTest<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
+  vim.keymap.set({ 'n', 't' }, '<leader>tt', M.toggle_terminal, { silent = true, desc = '[T]oggle [T]erminal' })
 end
 
 return M

@@ -8,6 +8,7 @@ return {
       'nvim-tree/nvim-web-devicons', -- optional, but recommended
     },
     lazy = false, -- neo-tree will lazily load itself
+
     config = function()
       require('neo-tree').setup {
         filesystem = {
@@ -20,6 +21,12 @@ return {
         },
         window = {
           position = 'right',
+          mappings = {
+            ['\\'] = 'close_window',
+          },
+        },
+        keys = {
+          { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
         },
       }
     end,
