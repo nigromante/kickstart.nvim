@@ -1,13 +1,13 @@
-vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+local M = {}
 
-local state = {
+M.state = {
   floating = {
     buf = -1,
     win = -1,
   },
 }
 
-local function create_floating_window(opts)
+M.create_floating_window = function(opts)
   opts = opts or {}
   local width = opts.width or math.floor(vim.o.columns * 0.8)
   local height = opts.height or math.floor(vim.o.lines * 0.8)
@@ -41,17 +41,26 @@ local function create_floating_window(opts)
   return { buf = buf, win = win }
 end
 
-local toggle_terminal = function()
-  if not vim.api.nvim_win_is_valid(state.floating.win) then
-    state.floating = create_floating_window { buf = state.floating.buf }
-    if vim.bo[state.floating.buf].buftype ~= 'terminal' then
+M.toggle_terminal = function()
+  if not vim.api.nvim_win_is_valid(M.state.floating.win) then
+    M.state.floating = M.create_floating_window { buf = M.state.floating.buf }
+    if vim.bo[M.state.floating.buf].buftype ~= 'terminal' then
       vim.cmd.terminal()
     end
   else
-    vim.api.nvim_win_hide(state.floating.win)
+    vim.api.nvim_win_hide(M.state.floating.win)
   end
 end
 
--- Example usage:
--- Create a floating window with default dimensions
-vim.api.nvim_create_user_command('Floaterminal', toggle_terminal, {})
+M.floatty_test = function()
+  print 'floatty test'
+end
+
+M.config = function()
+  vim.api.nvim_create_user_command('FloattyTest', M.toggle_terminal, {})
+
+  vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+  vim.keymap.set({ 'n', 't' }, '<leader>tt', ':FloattyTest<CR>', { silent = true, desc = '[T]oggle [T]erminal' })
+end
+
+return M
