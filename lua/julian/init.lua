@@ -7,6 +7,13 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- Load Plugins
+require('custom.plugins.floatty').config()
+
+-- Float Terminal
+vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+vim.keymap.set({ 'n', 't' }, '<leader>tt', ':FloattyToggle<Cr>', { silent = true, desc = '[T]oggle [T]erminal' })
+
 -- Salir
 vim.keymap.set('n', '<C-x>', ':qa<CR>', { noremap = true, silent = true, desc = 'E[x]it Neovim' })
 vim.keymap.set('i', '<C-x>', '<Esc>:qa<CR>', { noremap = true, silent = true, desc = 'E[x]it Neovim' })
@@ -14,13 +21,13 @@ vim.keymap.set('i', '<C-x>', '<Esc>:qa<CR>', { noremap = true, silent = true, de
 -- Buffers
 vim.keymap.set('n', '<C-p>', ':bp<CR>', { noremap = true, silent = true, desc = '[P]revious Buffer' })
 vim.keymap.set('n', '<C-n>', ':bn<CR>', { noremap = true, silent = true, desc = '[N]ext Buffer' })
-vim.keymap.set('n', '<Tab>', ':bp<CR>', { noremap = true, silent = true, desc = '[P]revious Buffer' })
+vim.keymap.set('n', '<Tab>', ':bn<CR>', { noremap = true, silent = true, desc = '[P]revious Buffer' })
 
 -- Neotree
 vim.keymap.set('n', '<C-e>', ':Neotree<CR>', { noremap = true, silent = true, desc = 'File [E]xplorer' })
 vim.keymap.set('i', '<C-e>', '<Esc>:w<CR>:Neotree<CR>', { noremap = true, silent = true, desc = 'File [E]xplorer' })
 
--- Save file
+-- Save File
 vim.keymap.set('n', '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
 vim.keymap.set('i', '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
 

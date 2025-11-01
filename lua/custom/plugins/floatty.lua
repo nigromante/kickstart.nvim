@@ -53,10 +53,10 @@ M.toggle_terminal = function()
 end
 
 M.config = function()
-  -- vim.api.nvim_create_user_command('FloattyToggle', M.toggle_terminal, {})
+  vim.api.nvim_create_user_command('FloattyToggle', M.toggle_terminal, {})
 
-  vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
-  vim.keymap.set({ 'n', 't' }, '<leader>tt', M.toggle_terminal, { silent = true, desc = '[T]oggle [T]erminal' })
+  -- vim.keymap.set('t', '<esc><esc>', '<c-\\><c-n>')
+  -- vim.keymap.set({ 'n', 't' }, '<leader>tt', ':FloattyToggle<Cr>', { silent = true, desc = '[T]oggle [T]erminal' })
 end
 
 return M
