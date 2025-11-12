@@ -28,8 +28,8 @@ vim.keymap.set('n', '<C-e>', ':Neotree<CR>', { noremap = true, silent = true, de
 vim.keymap.set('i', '<C-e>', '<Esc>:w<CR>:Neotree<CR>', { noremap = true, silent = true, desc = 'File [E]xplorer' })
 
 -- Save File
-vim.keymap.set('n', '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
-vim.keymap.set('i', '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
+vim.keymap.set({ 'n', 'i' }, '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
+--vim.keymap.set('i', '<C-s>', '<Cmd>lua SaveFile()<CR>', { desc = '[S]ave File' })
 
 function SaveFile()
   vim.lsp.buf.format()
@@ -50,4 +50,4 @@ function NumbersHide()
   vim.opt.relativenumber = false
 end
 
-require('custom.plugins.floatty').config()
+-- require('custom.plugins.floatty').config()
